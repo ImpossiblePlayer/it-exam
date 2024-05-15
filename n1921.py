@@ -3,20 +3,22 @@ def f(s, m):
   if s>=165: return m%2==0
   if m==0: return 0
   h = [f(s+1, m-1), f(s*2, m-1)] # выполняем все возможные действия
-  return any(h) if (m-1)%2==0 else all(h) # возвращаем any когда ходим мы и all, когда ходит оппонент
+  return any(h) if m%2!=0 else all(h) # возвращаем any когда ходим мы и all, когда ходит оппонент
                                           # (для  того, чтобы при любом ходе оппонента мы могли победить)
 
-print(19, [s for s in range(1, 165) if f(s, 1)])
-print(20, [s for s in range(1, 165) if not f(s, 1) and f(s, 3)])
-print(21, [s for s in range(1, 165) if not f(s, 2) and f(s, 4)])
+# print(19, [s for s in range(1, 165) if f(s, 1)])
+# print(20, [s for s in range(1, 165) if not f(s, 1) and f(s, 3)])
+# print(21, [s for s in range(1, 165) if not f(s, 2) and f(s, 4)])
 
 # для двух куч
 def f(a, b, m):
-  if a+b>=50: return m%2==0
+  if a+b>=288: return m%2==0
   if m==0: return 0
-  h = [f(a+1, b, m-1), f(a*2, b, m-1), f(a, b+1, m-1), f(a, b*2, m-1)]
-  return any(h) if (m-1)%2==0 else all(h) # all -> any в 19
-
+  h = [f(a+1, b, m-1), f(a*3, b, m-1), f(a+6, b, m-1), f(a, b*3, m-1), f(a, b+2, m-1), f(a, b+6, m-1)]
+  return any(h) if m%2!=0 else all(h) # all -> any в 19
+print(19, [s for s in range(1, 105) if f(4, s, 2)])
+print(20, [s for s in range(1, 105) if not f(17, s, 1) and f(17, s, 3)])
+print(21, [s for s in range(1, 105) if not f(4, s, 2) and f(4, s, 4)])
 
 
 def win1(a, b):

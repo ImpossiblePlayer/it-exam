@@ -1,3 +1,4 @@
 *.7z
 __pycache__/
 .vscode/
+*.txt
